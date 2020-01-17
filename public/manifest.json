@@ -7,6 +7,12 @@
     "default_popup": "index.html",
     "default_title": "Open the popup"
   },
+  "background": {
+    "scripts": [
+      "background.js"
+    ],
+    "persistent": false
+  },
   "permissions": [
     "activeTab",
     "tabs",

@@ -1,7 +1,7 @@
 import React from 'react';
 import './NoteTemplate.css';
 
-const NoteTemplate = ({form, children}) => {
+const NoteTemplate = ({ form, children }) => {
   return (
     <main className="note-template">
       <div className="title">
@@ -11,7 +11,7 @@ const NoteTemplate = ({form, children}) => {
         {form}
       </section>
       <section className="notes-wrapper">
-        { children }
+        {children}
       </section>
     </main>
   );
