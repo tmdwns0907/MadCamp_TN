@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
 import { fire } from 'shared/Firebase'
-import NoteTemplate from '../components/NoteTemplate';
-import Form from '../components/Form';
-import NoteItemList from '../components/NoteItemList';
 import { Route } from 'react-router-dom';
 import { StickyList, StickyNote } from 'pages';
-import Menu from 'components/Menu';
+import Menu from 'components/js/Menu';
 
 class App extends Component {
     constructor() {

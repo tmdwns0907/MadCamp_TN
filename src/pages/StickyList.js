@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import NoteTemplate from '../components/NoteTemplate';
-import Form from '../components/Form';
-import NoteItemList from '../components/NoteItemList';
+import NoteTemplate from '../components/js/NoteTemplate';
+import Form from '../components/js/Form';
+import NoteItemList from '../components/js/NoteItemList';
 
 class StickyList extends Component {
     constructor(props) {

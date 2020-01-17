@@ -1,5 +1,5 @@
 import React from 'react';
-import './NoteTemplate.css';
+import '../css/NoteTemplate.css';
 
 const NoteTemplate = ({ form, children }) => {
   return (

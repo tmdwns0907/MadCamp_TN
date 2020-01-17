@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './NoteItem.css';
+import '../css/NoteItem.css';
 
 class NoteItem extends Component {
   shouldComponentUpdate(nextProps, nextState) {
