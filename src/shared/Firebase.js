@@ -1,8 +1,14 @@
-//import * as firebase from 'firebase';
-import firebase from 'firebase';
+//import * as firebase from 'firebase/app';
+//import firebase from 'firebase';
+
+
+var firebase = require('firebase/app');
+require('firebase/auth');
+require('firebase/database');
 
 let database;
-let config = {
+
+const config = {
     apiKey: "AIzaSyDKRgb4E15ZF24UxffPJeQUEcKED59bZYE",
     authDomain: "madcamp-tn.firebaseapp.com",
     databaseURL: "https://madcamp-tn.firebaseio.com",
@@ -13,9 +19,9 @@ let config = {
     measurementId: "G-9KS34GS0B8"
 }
 
+
 export const fire = () => {
-    if (!firebase.apps.length) {
+    if (!firebase.apps.length)
         firebase.initializeApp(config);
-    }
-  database = firebase.database()
+    database = firebase.database();
 }
