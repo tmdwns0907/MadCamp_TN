@@ -8,7 +8,7 @@ const Form = ({ value, onChange, onCreate, onKeyPress }) => {
       <div className="create-button" onClick={onCreate}>
         +
       </div>
-    </div>
+    //</div>
   );
 };
 

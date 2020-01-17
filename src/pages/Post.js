@@ -1,11 +1,7 @@
-import React from 'react';
+import { default as Stickies } from '../components/Stickies';
 
-const Post = ({match}) => {
-    return (
-        <div>
-            Post {match.params.id}
-        </div>
-    );
+export {
+  Stickies
 };
 
-export default Post;
+export default Stickies;
