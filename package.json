@@ -22,7 +22,7 @@
     "start:webpack": "webpack-dev-server --hot",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy": "cross-env NODE_PATH=src react-scripts build && firebase deploy"
+    "deploy": "webpack && firebase deploy"
   },
   "eslintConfig": {
     "extends": "react-app"

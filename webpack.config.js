@@ -9,7 +9,8 @@ var fileExtensions = ["jpg", "jpeg", "png", "gif", "eot", "otf", "svg", "ttf", "
 const config = {
     entry: {
         popup: "./src/index.js",
-        background: "./src/middle/background.js"
+        background: "./src/middle/background.js",
+        content: "./src/middle/content.js"
     },
     output: {
         path: path.resolve(__dirname + "/build"),

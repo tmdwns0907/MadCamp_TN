@@ -13,7 +13,7 @@ class NoteItem extends Component {
     return (
       <div className="note-item" onClick={() => onToggle(id)}>
         <div className="remove" onClick={(e) => {
-          e.stopPropagation(); // onToggle 이 실행되지 않도록 함
+          e.stopPropagation(); // stops onToggle to be executed
           onRemove(id);
         }
         }>&times;</div>

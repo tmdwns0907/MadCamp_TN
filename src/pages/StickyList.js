@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
 import NoteTemplate from '../components/js/NoteTemplate';
-import Form from '../components/js/Form';
 import NoteItemList from '../components/js/NoteItemList';
+import Form from '../components/js/Form';
 
 class StickyList extends Component {
     constructor(props) {
@@ -33,6 +33,9 @@ class StickyList extends Component {
                 checked: false
             })
         });
+        
+        chrome.windows.create({url : 'https://madcamp-tn.firebaseapp.com/sticky-note'}); 
+
     }
 
     handleKeyPress = (e) => {
@@ -76,8 +79,7 @@ class StickyList extends Component {
                     value={input}
                     onKeyPress={handleKeyPress}
                     onChange={handleChange}
-                    onCreate={handleCreate}
-                />
+                    onCreate={handleCreate} />
             )}>
                 <NoteItemList notes={notes} onToggle={handleToggle} onRemove={handleRemove} />
             </NoteTemplate>

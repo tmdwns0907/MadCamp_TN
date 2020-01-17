@@ -13,7 +13,7 @@ const Menu = () => {
                 <li><NavLink exact to="/" activeStyle={activeStyle}>StickyList</NavLink></li>
                 <li><NavLink exact to="/sticky-note" activeStyle={activeStyle}>StickyNote</NavLink></li>
             </ul>
-            <hr/>
+            <hr />
         </div>
     );
 };
