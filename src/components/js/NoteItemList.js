@@ -10,10 +10,11 @@ class NoteItemList extends Component {
     const { notes, onToggle, onRemove } = this.props;
 
     const noteList = notes.map(
-      ({ id, text, checked }) => (
+      ({ id, text, url, checked }) => (
         <NoteItem
           id={id}
           text={text}
+          url={url}
           checked={checked}
           onToggle={onToggle}
           onRemove={onRemove}

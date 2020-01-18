@@ -10,32 +10,33 @@ class StickyList extends Component {
         this.state = {
             input: '',
             notes: [
-                { id: 0, text: ' 리액트 소개', checked: false },
-                { id: 1, text: ' 리액트 소개', checked: true },
-                { id: 2, text: ' 리액트 소개', checked: false }
+                { id: 0, text: ' 리액트 소개', url: '', checked: false },
+                { id: 1, text: ' 리액트 소개', url: '', checked: true },
+                { id: 2, text: ' 리액트 소개', url: '', checked: false },
             ]
         }
     }
-
     id = 3;
+
 
     handleChange = (e) => {
         this.setState({ input: e.target.value });
     }
 
     handleCreate = () => {
-        const { input, notes } = this.state;
+        const { input, notes, url } = this.state;
         this.setState({
             input: '',
             notes: notes.concat({
                 id: this.id++,
                 text: input,
+                url: '',
                 checked: false
             })
         });
-        
-        chrome.windows.create({url : 'https://madcamp-tn.firebaseapp.com/sticky-note'}); 
 
+        chrome.windows.create({ url: 'https://madcamp-tn.firebaseapp.com/sticky-note', type: 'popup', width: 320, height: 320 });
+        //chrome.windows.create({ url: `${index}/sticky-note`, type: 'popup', width: 320, height: 320 });
     }
 
     handleKeyPress = (e) => {
@@ -65,7 +66,7 @@ class StickyList extends Component {
     }
 
     render() {
-        const { input, notes } = this.state;
+        const { input, url, notes } = this.state;
         const {
             handleChange,
             handleCreate,
@@ -76,7 +77,8 @@ class StickyList extends Component {
         return (
             <NoteTemplate form={(
                 <Form
-                    value={input}
+                    input={input}
+                    url={url}
                     onKeyPress={handleKeyPress}
                     onChange={handleChange}
                     onCreate={handleCreate} />

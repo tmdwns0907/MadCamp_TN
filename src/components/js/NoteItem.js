@@ -6,7 +6,7 @@ class NoteItem extends Component {
     return this.props.checked !== nextProps.checked;
   }
   render() {
-    const { text, checked, id, onToggle, onRemove } = this.props;
+    const { text, url, checked, id, onToggle, onRemove } = this.props;
 
     console.log(id);
 
@@ -17,9 +17,10 @@ class NoteItem extends Component {
           onRemove(id);
         }
         }>&times;</div>
-        
+
         <div className={`note-text ${checked && 'checked'}`}>
           <div>{text}</div>
+          <div>{url}</div>
         </div>
         {checked && (<div className="check-mark">✓</div>)}
       </div>
