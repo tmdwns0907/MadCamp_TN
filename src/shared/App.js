@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { fire } from '../shared/Firebase'
 import { Route, Switch } from 'react-router-dom';
-import { StickyList, StickyNote } from '../pages';
+import { StickyList, StickyNote } from '../pages/js';
 //import Menu from '../components/js/Menu';
 import * as Popup from '../middle/popup';
 
