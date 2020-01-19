@@ -14,4 +14,12 @@ chrome.windows.onFocusChanged.addListener(winId => {
     })
 }, {
     windowTypes: ['normal'],
-})
+});
+
+chrome.windows.onRemoved.addListener(winId => {
+    chrome.tabs.query({ 'windowId': winId, 'windowType': 'popup' }, tabs => {
+        if (tabs.length != 'undefined' && tabs.length == 1)
+            var removedURL = tabs[0].url;
+        chrome.runtime.sendMessage({ url: removedURL }, res => { })
+    })
+});
