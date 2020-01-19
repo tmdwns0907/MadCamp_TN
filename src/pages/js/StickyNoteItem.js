@@ -1,14 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 
-class StickyNote extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            id: this.props.id,
-        }
-    }
-    
-
+class StickyNoteItem extends Component {
     render() {
         return (
             <div>
@@ -30,11 +23,9 @@ class StickyNote extends Component {
                 StickyNote!! <br />
                 StickyNote!! <br />
                 StickyNote!! <br />
-                
             </div>
         );
     }
 };
 
-export default StickyNote;
-
+//export default StickyNoteItem;
