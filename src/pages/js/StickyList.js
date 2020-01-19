@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import NoteTemplate from '../../components/js/NoteTemplate';
 import NoteItemList from '../../components/js/NoteItemList';
 import Form from '../../components/js/Form';
+import StickyNote from './StickyNote';
 
 class StickyList extends Component {
     constructor(props) {
@@ -75,6 +76,7 @@ class StickyList extends Component {
             handleRemove
         } = this;
         return (
+            <div>
             <NoteTemplate form={(
                 <Form
                     input={input}
@@ -85,6 +87,8 @@ class StickyList extends Component {
             )}>
                 <NoteItemList notes={notes} onToggle={handleToggle} onRemove={handleRemove} />
             </NoteTemplate>
+            <StickyNote></StickyNote>
+            </div>
         )
     }
 };
