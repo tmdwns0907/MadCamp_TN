@@ -1,16 +1,23 @@
 {
-  "name": "TN",
+  "name": "TN-Chrome Sticky Note",
   "version": "1.0",
   "description": "MadCamp_4_TN",
   "manifest_version": 2,
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "Sticky Note"
+    "default_title": "Chrome Sticky Note"
   },
   "externally_connectable": {
     "ids": [
       "*"
     ]
+  },
+  "commands": {
+    "_execute_browser_action": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+F"
+      }
+    }
   },
   "background": {
     "scripts": [
@@ -26,7 +33,7 @@
       "js": [
         "content.bundle.js"
       ],
-      "run_at": "document_start"
+      "run_at": "document_end"
     }
   ],
   "permissions": [
@@ -35,7 +42,8 @@
     "<all_urls>",
     "storage",
     "contextMenus",
-    "identity"
+    "identity",
+    "webNavigation"
   ],
   "web_accessible_resources": [
     "*.html"

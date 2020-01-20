@@ -6,6 +6,29 @@ chrome.browserAction.onClicked.addListener(() => {
 */
 
 
+//contextMenu - right click
+const menu = chrome.contextMenus.create({ id: '1', title: 'Add new Note' });
+
+// background -> popup & content
+chrome.contextMenus.onClicked.addListener((info) => {
+    if (info.menuItemId == '1') {
+        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+            if (tabs.length != 'undefined' && tabs.length == 1)
+                var currentURL = tabs[0].url;
+
+            if (typeof currentURL != 'undefined')
+                console.log(currentURL);
+
+            chrome.runtime.sendMessage({ action: 'add-note-right', url: currentURL }, res => {
+                chrome.tabs.executeScript({ file: 'StickyNote.bundle.js' });
+                chrome.tabs.insertCSS({ file: 'StickyNote.css' });
+                console.log(res.success);
+            });
+        })
+    }
+})
+
+
 
 // recognize focus change
 chrome.windows.onFocusChanged.addListener(winId => {
@@ -21,7 +44,32 @@ chrome.windows.onFocusChanged.addListener(winId => {
 });
 
 
-//background -> content injection
+// background -> content injection
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("hihi");
+    console.log(request.action);
+    console.log(request.url);
+
+    switch (request.action) {
+        case "add-note":
+            sendResponse({ success: true });
+            chrome.tabs.executeScript({ file: 'StickyNote.bundle.js' });
+            chrome.tabs.insertCSS({ file: 'StickyNote.css' });
+            return true;
+
+        case "remove-note":
+            sendResponse({ success: true });
+            chrome.tabs.executeScript({ file: 'removeStickyNote.bundle.js' });
+            return true;
+    }
+    return true;
+});
+
+
+
+
+
+/*
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status == 'complete') {
         chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -39,6 +87,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         });
     }
 })
+*/
 
 // recognize removed note
 /*
