@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import Note_Middle from './Note_Middle';
-import Note_Bottom from './Note_Bottom';
+import ReactDOM from 'react-dom';
+import NoteMiddle from './NoteMiddle';
+import NoteBottom from './NoteBottom';
 import '../css/StickyNote.css';
 import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import Draggable, {DraggableCore} from 'react-draggable'; // Both at the same time
+import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
 
 class StickyNote extends Component {
     constructor(props) {
@@ -13,12 +13,19 @@ class StickyNote extends Component {
         this.state = {
             id: this.props.id,
             isToggleOn: true,
+<<<<<<< HEAD
             pincolor: ''
         }
-        this.handleClick = this.handleClick.bind(this);
-    }
-    
+=======
+            text: "Add your Note!",
+        };
 
+>>>>>>> 9365c554354ac544fa5dc6b1d7225810c89b9333
+        this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+<<<<<<< HEAD
       handleClick() {
           const newColor=this.state.isToggleOn?"red":"gray"
         this.setState(prevState => ({
@@ -28,8 +35,18 @@ class StickyNote extends Component {
       }
     
     
+=======
+    handleClick() {
+        this.setState(prevState => ({ isToggleOn: !prevState.isToggleOn }));
+    }
+
+    handleChange(event) {
+        this.setState({ text: event.target.value });
+    }
+>>>>>>> 9365c554354ac544fa5dc6b1d7225810c89b9333
 
     render() {
+        const dragHandlers = { onStart: this.onStart };
         return (
 
             <Draggable handle="strong" onStart={() => this.state.isToggleOn}>
@@ -37,40 +54,49 @@ class StickyNote extends Component {
                     <div className="sticky-note-template">
                         <strong className="cursor">
                             <div className="note-title">
+<<<<<<< HEAD
                                 
                                     <FontAwesomeIcon className="pin" style={{color: this.state.pincolor}} onClick={this.handleClick} icon={faThumbtack} >
                                         {this.state.isToggleOn ? console.log("on") : console.log("off")}
                                     </FontAwesomeIcon>
                                 
+=======
+                                <FontAwesomeIcon className="pin" onClick={this.handleClick} icon={faThumbtack} >
+                                    {this.state.isToggleOn ? console.log("on") : console.log("off")}
+                                </FontAwesomeIcon>
+
+>>>>>>> 9365c554354ac544fa5dc6b1d7225810c89b9333
                                 <div className="change-color-button">
                                     &#x022EF;
-                                    <div className="color-tab">color
-                                    <div className="black"></div>
-                                    <div className="white"></div>
-                                    <div className="yellow"></div>
+                                    <div className="color-tab">
+                                        color
+                                        <div className="black"></div>
+                                        <div className="white"></div>
+                                        <div className="yellow"></div>
                                     </div>
-    </div>
+                                </div>
                                 <div className="close-button">
                                     &times;
-                <span className="tooltip">닫기</span>
+                                    <span className="tooltip">닫기</span>
                                 </div>
                             </div>
                         </strong>
                         <section className="note-middle-wrapper">
-                            <Note_Middle></Note_Middle>
+                            <NoteMiddle value={this.state.text} onChange={this.handleChange} />
                         </section>
                         <section className="note-bottom-wrapper">
-                            <Note_Bottom></Note_Bottom>
+                            <NoteBottom />
                         </section>
                     </div>
                 </div>
             </Draggable >
-
         );
     }
-
-
 };
 
-export default StickyNote;
+//export default StickyNote;
 
+const sticky = document.createElement('div');
+sticky.id = "stickyNote";
+document.body.appendChild(sticky);
+ReactDOM.render(<StickyNote />, sticky);

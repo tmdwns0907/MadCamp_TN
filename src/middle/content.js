@@ -1,20 +1,21 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import StickyNoteItem from '../pages/js/StickyNoteItem';
+// content - add note
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("hihihihihihi");
+    console.log(request.action);
+    /*
+    if (request.action == "add-note-content") {
+        const stickyNote = document.createElement('div');
+        stickyNote.id = "stickyNote";
+        document.body.appendChild(stickyNote);
+        ReactDOM.render(<StickyNoteItem />, stickyNote);
 
+        sendResponse({ success: true });
 
-/*
-chrome.runtime.onConnect.addListener(port => {
-    port.onMessage.addListener(message => {
-        console.log("hihi");
-
-        if (message.action == "add-note") {
-            chrome.tabs.executeScript({ file: 'StickyNoteItem.bundle.js' });
-            port.postMessage({ success: true });
-        }
-    });
+        return true;
+    }*/
+    return true;
 });
-*/
+
 
 /*
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -101,21 +102,3 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     return true;
 });
 */
-
-// content - add note
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log("hihihihihihi");
-    console.log(request.action);
-    /*
-    if (request.action == "add-note-content") {
-        const stickyNote = document.createElement('div');
-        stickyNote.id = "stickyNote";
-        document.body.appendChild(stickyNote);
-        ReactDOM.render(<StickyNoteItem />, stickyNote);
-
-        sendResponse({ success: true });
-
-        return true;
-    }*/
-    return true;
-});

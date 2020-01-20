@@ -1,6 +1,10 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import StickyNoteItem from '../pages/js/StickyNoteItem';
+// login
+/*
+chrome.browserAction.onClicked.addListener(() => {
+    chrome.tabs.create({ url: 'index.html' });
+});
+*/
+
 
 
 // recognize focus change
@@ -15,6 +19,26 @@ chrome.windows.onFocusChanged.addListener(winId => {
 }, {
     windowTypes: ['normal'],
 });
+
+
+//background -> content injection
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    if (changeInfo.status == 'complete') {
+        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+            console.log("hihi");
+            console.log(request.action);
+            console.log(tab.url);
+
+            if (request.action == "add-note") {
+                sendResponse({ success: true, url: tab.url });
+
+                chrome.tabs.executeScript({ file: 'StickyNote.bundle.js' });
+                return true;
+            }
+            return true;
+        });
+    }
+})
 
 // recognize removed note
 /*
@@ -133,32 +157,14 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         chrome.runtime.sendMessage({ action: "add-note-content" }, res => {
             //console.log(res.request);
             //console.log(res.sender);
-            
+
             console.log(res.success);
             //alert(res.success);
-            
+
         })
-        
+
         return true;
     }
     return true;
 });
 */
-
-//background -> content injection
-chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
-    if (changeInfo.status == 'complete') {
-        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-            console.log("hihi");
-            console.log(request.action);
-
-            if (request.action == "add-note") {
-                sendResponse({ success: true });
-
-                chrome.tabs.executeScript({ file: 'StickyNoteItem.bundle.js' });
-                return true;
-            }
-            return true;
-        });
-    }
-})
