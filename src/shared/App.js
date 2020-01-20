@@ -18,10 +18,10 @@ class App extends Component {
                 {
                     //<Menu />
                 }
-                <Switch>
-                    <Route path="/sticky-note" component={StickyNote} />
-                    <Route path="/" component={StickyList} />
-                </Switch>
+
+
+                <Route path="/" component={StickyList} />
+
             </div>
 
         )

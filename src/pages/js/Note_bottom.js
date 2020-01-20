@@ -4,10 +4,10 @@ import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class Note_bottom extends Component {
-    
+
     render() {
         return (
-            <div className= "note-bottom">
+            <div className="note-bottom">
             </div>
         );
     }

@@ -34,7 +34,8 @@
     "tabs",
     "<all_urls>",
     "storage",
-    "contextMenus"
+    "contextMenus",
+    "identity"
   ],
   "web_accessible_resources": [
     "*.html"

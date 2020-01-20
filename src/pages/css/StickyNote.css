@@ -1,5 +1,4 @@
-.container{
-
+.container {
     background: white;
 }
 
@@ -31,46 +30,45 @@
       position: relative;
     color: #e64980;
     cursor: pointer;
-    }
+}
 
-    .container .sticky-note-template .cursor .note-title .tooltip {
-        visibility: hidden;
-  width: 60px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -30px;
-  opacity: 0;
-  transition: opacity 0.3s;
-      font-size: 0.75rem;
-      }
+.container .sticky-note-template .cursor .note-title .tooltip {
+    visibility: hidden;
+    width: 60px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -30px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.75rem;
+}
 
-      .container .sticky-note-template .cursor .note-title .tooltip::after{
-        content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
+.container .sticky-note-template .cursor .note-title .tooltip::after{
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;    
+}
       
-      }
-      
-      .container .sticky-note-template .cursor .note-title .close-button:hover .tooltip{
-        visibility: visible;
-        opacity: 1;
-      }
+.container .sticky-note-template .cursor .note-title .close-button:hover .tooltip{
+    visibility: visible;
+    opacity: 1;
+}
 
-      .container .sticky-note-template .cursor .note-title .close-button:hover {
-        background: #e3fafc;
-      }
+.container .sticky-note-template .cursor .note-title .close-button:hover {
+    background: #e3fafc;
+}
 
 .sticky-note-template {
     min-width: 100px;
@@ -82,22 +80,22 @@
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     margin: 0 auto;
     /*margin-top: 1rem;*/
-  }
+}
   
-  .note-title {
-      height:20px;
+.note-title {
+    height:20px;
     background: #FCF4AD;
     color: white;
     border-bottom: 1px solid #C8C7BE;
-  }
+}
   
-  .note-middle-wrapper {
+.note-middle-wrapper {
       min-width: 100px;
       min-height: 80px;
     border-bottom: 1px solid #C8C7BE;
-  }
+}
   
-  .note-bottom-wrapper {
+.note-bottom-wrapper {
     height: 20px;
-  }
+}
 

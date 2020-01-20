@@ -1,22 +1,21 @@
 .note-middle{
-  background: #FCF8D9;
+    background: #FCF8D9;
 }
 
 .note {
-
     align-items: center;
     cursor: pointer;
     transition: all 0.15s;
     user-select: none;
-  }
+}
 
-  .note textarea {
+.note textarea {
     min-width: 100px;
-      min-height: 80px;
-      max-width: 500px;
-      max-height: 460px;
+    min-height: 80px;
+    max-width: 500px;
+    max-height: 460px;
     font-size: 1rem;
     outline: none;
     border: none;
     background: #FCF8D9;
-  }
+}

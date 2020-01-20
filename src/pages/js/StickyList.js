@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import NoteTemplate from '../../components/js/NoteTemplate';
 import NoteItemList from '../../components/js/NoteItemList';
 import Form from '../../components/js/Form';
-import StickyNote from './StickyNote';
 
 class StickyList extends Component {
     constructor(props) {
@@ -80,7 +79,7 @@ class StickyList extends Component {
         });
         */
 
-        
+
         // popup -> background
         chrome.runtime.sendMessage({ action: "add-note" }, res => {
             console.log(res.success);
@@ -115,8 +114,6 @@ class StickyList extends Component {
         this.setState({ notes: notes.filter(note => note.id !== id) });
     }
 
-    
-
     render() {
         const { input, url, notes } = this.state;
         const {
@@ -129,17 +126,16 @@ class StickyList extends Component {
 
         return (
             <div>
-            <NoteTemplate form={(
-                <Form
-                    input={input}
-                    url={url}
-                    onKeyPress={handleKeyPress}
-                    onChange={handleChange}
-                    onCreate={handleCreate} />
-            )}>
-                <NoteItemList notes={notes} onToggle={handleToggle} onRemove={handleRemove} />
-            </NoteTemplate>
-            <StickyNote></StickyNote>
+                <NoteTemplate form={(
+                    <Form
+                        input={input}
+                        url={url}
+                        onKeyPress={handleKeyPress}
+                        onChange={handleChange}
+                        onCreate={handleCreate} />
+                )}>
+                    <NoteItemList notes={notes} onToggle={handleToggle} onRemove={handleRemove} />
+                </NoteTemplate>
             </div>
         )
     }

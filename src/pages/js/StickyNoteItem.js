@@ -13,8 +13,9 @@ class StickyNoteItem extends Component {
 };
 
 //alert('asdfasdfaqsdfasdf');
-
+/*
 const stickyNote = document.createElement('div');
 stickyNote.id = "stickyNote";
 document.body.appendChild(stickyNote);
 ReactDOM.render(<StickyNoteItem />, stickyNote);
+*/

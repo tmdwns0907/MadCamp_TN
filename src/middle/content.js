@@ -4,19 +4,6 @@ import StickyNoteItem from '../pages/js/StickyNoteItem';
 
 
 /*
-chrome.runtime.onConnect.addListener(port => {
-    port.onMessage.addListener(message => {
-        console.log("hihi");
-
-        if (message.action == "add-note") {
-            chrome.tabs.executeScript({ file: 'StickyNoteItem.bundle.js' });
-            port.postMessage({ success: true });
-        }
-    });
-});
-*/
-
-/*
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("hihi");
     console.log(sender.tab);
