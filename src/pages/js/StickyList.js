@@ -59,38 +59,32 @@ class StickyList extends Component {
         });
         */
 
+        /*
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            alert(47654765756);
+            chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (response) {
+                alert(123123123);
+                console.log(response.farewell);
+            });
+        });
+        */
 
+        /*
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            alert(47654765756);
+            chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (response) {
+                alert(123123123);
+                console.log(response.farewell);
+            });
+        });
+        */
+
+        
+        // popup -> background
         chrome.runtime.sendMessage({ action: "add-note" }, res => {
             console.log(res.success);
-            alert(res.success);
+            //alert(res.success);
         })
-
-
-
-
-        /*
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            alert(47654765756);
-            chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (response) {
-                alert(123123123);
-                console.log(response.farewell);
-            });
-        });
-        */
-
-
-
-        /*
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            alert(47654765756);
-            chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (response) {
-                alert(123123123);
-                console.log(response.farewell);
-            });
-        });
-        */
-
-
 
     }
 
@@ -120,6 +114,8 @@ class StickyList extends Component {
         this.setState({ notes: notes.filter(note => note.id !== id) });
     }
 
+    
+
     render() {
         const { input, url, notes } = this.state;
         const {
@@ -129,6 +125,7 @@ class StickyList extends Component {
             handleToggle,
             handleRemove
         } = this;
+
         return (
             <NoteTemplate form={(
                 <Form

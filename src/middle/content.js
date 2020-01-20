@@ -48,27 +48,6 @@ chrome.runtime.onConnect.addListener(port => {
 });
 */
 
-chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log("hihi");
-    console.log(sender.tab);
-
-    if (request.action == "add-note") {
-        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            if (tabs.length === 0) {
-                //sendResponse({});
-                
-            }
-
-            console.log(tabs);
-            setTimeout(() => {
-                sendResponse({ success: true });
-            }, 2000);
-            return true;
-        });
-    }
-    return true;
-});
-
 
 /*
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
@@ -101,13 +80,42 @@ port.onMessage.addListener(function (message, sender) {
 });
 */
 
+/*
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("hihi");
+    console.log(sender.tab);
+
+    if (request.action == "add-note") {
+        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+            if (tabs.length === 0) {
+                //sendResponse({});
+            }
+
+            console.log(tabs);
+            setTimeout(() => {
+                sendResponse({ success: true });
+            }, 2000);
+            return true;
+        });
+    }
+    return true;
+});
+*/
+
+// content - add note
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("hihihihihihi");
     console.log(request.action);
-
+    /*
     if (request.action == "add-note-content") {
-        sendResponse({ success: 'okokok' });
+        const stickyNote = document.createElement('div');
+        stickyNote.id = "stickyNote";
+        document.body.appendChild(stickyNote);
+        ReactDOM.render(<StickyNoteItem />, stickyNote);
+
+        sendResponse({ success: true });
+
         return true;
-    }
+    }*/
     return true;
 });
