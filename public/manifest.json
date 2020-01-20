@@ -7,8 +7,14 @@
     "default_popup": "index.html",
     "default_title": "Sticky Note"
   },
+  "externally_connectable": {
+    "ids": [
+      "*"
+    ]
+  },
   "background": {
     "scripts": [
+      "browser-polyfill.js",
       "background.bundle.js"
     ],
     "persistent": false
@@ -19,16 +25,22 @@
         "<all_urls>"
       ],
       "js": [
+        "browser-polyfill.js",
+        "StickyNoteItem.bundle.js",
         "content.bundle.js"
       ],
-      "run_at": "document_end"
+      "run_at": "document_idle"
     }
   ],
   "permissions": [
     "activeTab",
     "tabs",
     "<all_urls>",
-    "storage"
+    "storage",
+    "contextMenus"
+  ],
+  "web_accessible_resources": [
+    "*.html"
   ],
   "content_security_policy": "default-src 'self'; frame-src https://s-usc1c-nss-212.firebaseio.com/; connect-src wss://s-usc1c-nss-212.firebaseio.com/.ws wss://madcamp-tn.firebaseio.com/.ws; style-src 'self' http://* 'unsafe-inline'; script-src 'self' 'unsafe-eval' https://cdn.firebase.com https://*.firebaseio.com 'sha256-qi7mBkt1jIA/PQInPTX+RmkExAhsBai2vRt/7EF3WjM='; object-src 'self'"
 }

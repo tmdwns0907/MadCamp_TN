@@ -36,8 +36,63 @@ class StickyList extends Component {
             })
         });
 
-        chrome.windows.create({ url: 'https://madcamp-tn.firebaseapp.com/sticky-note', type: 'popup', width: 320, height: 320 });
-        //chrome.windows.create({ url: `${index}/sticky-note`, type: 'popup', width: 320, height: 320 });
+        /*
+        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+            const port = chrome.tabs.connect(tabs[0].id, { name: "connect" });
+
+            port.postMessage({ action: "add-note" });
+
+            port.onMessage.addListener(res => {
+                console.log(res.success);
+            })
+        });
+        */
+
+        /*
+        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+            console.log(tabs[0]);
+            alert(tabs[0].id);
+            
+            chrome.tabs.sendMessage(tabs[0].id, { action: "add-note" }, res => {
+                //console.log(res.success);
+            })
+           
+        });
+        */
+
+
+        chrome.runtime.sendMessage({ action: "add-note" }, res => {
+            console.log(res.success);
+            alert(res.success);
+        })
+
+
+
+
+        /*
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            alert(47654765756);
+            chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (response) {
+                alert(123123123);
+                console.log(response.farewell);
+            });
+        });
+        */
+
+
+
+        /*
+        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
+            alert(47654765756);
+            chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (response) {
+                alert(123123123);
+                console.log(response.farewell);
+            });
+        });
+        */
+
+
+
     }
 
     handleKeyPress = (e) => {

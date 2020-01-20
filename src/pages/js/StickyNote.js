@@ -8,6 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Draggable, {DraggableCore} from 'react-draggable'; // Both at the same time
 
 class StickyNote extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            id: this.props.id,
+        }
+    }
+    
 
     constructor(props) {
         super(props);

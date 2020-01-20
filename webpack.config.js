@@ -10,7 +10,8 @@ const config = {
     entry: {
         popup: "./src/index.js",
         background: "./src/middle/background.js",
-        content: "./src/middle/content.js"
+        content: "./src/middle/content.js",
+        StickyNoteItem: "./src/pages/js/StickyNoteItem.js"
     },
     output: {
         path: path.resolve(__dirname + "/build"),
@@ -74,6 +75,9 @@ const config = {
                     }))
                 }
             },
+            {
+                from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js'
+            }
             /*
             {
                 from: 'public/static',
