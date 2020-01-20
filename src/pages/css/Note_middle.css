@@ -10,7 +10,7 @@
     user-select: none;
   }
 
-  .note textarea {
+  .note-text textarea {
     min-width: 100px;
       min-height: 80px;
       max-width: 500px;

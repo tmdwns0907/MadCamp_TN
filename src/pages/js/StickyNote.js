@@ -12,17 +12,19 @@ class StickyNote extends Component {
         super(props);
         this.state = {
             id: this.props.id,
-            isToggleOn: true
+            isToggleOn: true,
+            pincolor: ''
         }
         this.handleClick = this.handleClick.bind(this);
     }
     
 
       handleClick() {
+          const newColor=this.state.isToggleOn?"red":"gray"
         this.setState(prevState => ({
-          isToggleOn: !prevState.isToggleOn
+          isToggleOn: !prevState.isToggleOn,
+          pincolor: newColor
         }));
-        document.getElementById("pin").style.backgroundColor="red";
       }
     
     
@@ -36,7 +38,7 @@ class StickyNote extends Component {
                         <strong className="cursor">
                             <div className="note-title">
                                 
-                                    <FontAwesomeIcon className="pin" onClick={this.handleClick} icon={faThumbtack} >
+                                    <FontAwesomeIcon className="pin" style={{color: this.state.pincolor}} onClick={this.handleClick} icon={faThumbtack} >
                                         {this.state.isToggleOn ? console.log("on") : console.log("off")}
                                     </FontAwesomeIcon>
                                 
