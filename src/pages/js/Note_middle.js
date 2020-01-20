@@ -1,16 +1,16 @@
 import React from 'react';
-import '../css/note_middle.css';
+import '../css/Note_Middle.css';
 
-const Note_middle = ({value}) => {
+const Note_Middle = ({value}) => {
 
     return (
         <div className="note-middle">
-            <div className="note">
+            <div className="note-text">
                 <textarea value={value}>Add your note...</textarea>
             </div>
             </div>
         );
 };
 
-export default Note_middle;
+export default Note_Middle;
 

@@ -14,18 +14,84 @@
     background:#e3fafc;
 }
 
+
+
 .change-color-button {
     height:100%;
     float:left;
+    position: relative;
     cursor: pointer;
     color: gray;
 }
+
+.black {
+    float:left;
+    width: 30px;
+    height: 30px;
+    background: black;
+}
+
+.white {
+    float:left;
+    width: 30px;
+    height: 30px;
+    background: white;
+}
+
+.yellow {
+    float:left;
+    width: 30px;
+    height: 30px;
+    background: yellow;
+}
+
+.color-tab {
+    visibility: hidden;
+width: 200px;
+height: 150px;
+background-color: #555;
+color: #fff;
+text-align: center;
+border-radius: 6px;
+padding: 5px 0;
+position: absolute;
+z-index: 1;
+bottom: 125%;
+left: 50%;
+padding-left: 30px;
+margin-left: -30px;
+opacity: 0;
+transition: opacity 0.3s;
+  font-size: 0.75rem;
+  }
+
+  .color-tab::after{
+    content: "";
+position: absolute;
+top: 100%;
+left: 50%;
+margin-left: -5px;
+border-width: 5px;
+border-style: solid;
+border-color: #555 transparent transparent transparent;
+  
+  }
+  
+  
+  .change-color-button:hover .color-tab{
+    visibility: visible;
+    opacity: 1;
+  }
 
 .change-color-button:hover {
     background:#e3fafc;
 }
 
-.container .sticky-note-template .cursor .note-title .close-button {
+.change-color-button:active .sticky-note-template{
+    background: #e64980;
+}
+
+.close-button {
     height:100%;
     float:left;
       position: relative;
@@ -33,7 +99,7 @@
     cursor: pointer;
     }
 
-    .container .sticky-note-template .cursor .note-title .tooltip {
+    .tooltip {
         visibility: hidden;
   width: 60px;
   background-color: #555;
@@ -51,7 +117,7 @@
       font-size: 0.75rem;
       }
 
-      .container .sticky-note-template .cursor .note-title .tooltip::after{
+      .tooltip::after{
         content: "";
   position: absolute;
   top: 100%;
@@ -63,12 +129,12 @@
       
       }
       
-      .container .sticky-note-template .cursor .note-title .close-button:hover .tooltip{
+      .close-button:hover .tooltip{
         visibility: visible;
         opacity: 1;
       }
 
-      .container .sticky-note-template .cursor .note-title .close-button:hover {
+      .close-button:hover {
         background: #e3fafc;
       }
 

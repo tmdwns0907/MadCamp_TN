@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Note_middle from './Note_middle';
-import Note_bottom from './Note_bottom';
+import Note_Middle from './Note_Middle';
+import Note_Bottom from './Note_Bottom';
 import '../css/StickyNote.css';
 import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -12,26 +12,22 @@ class StickyNote extends Component {
         super(props);
         this.state = {
             id: this.props.id,
+            isToggleOn: true
         }
+        this.handleClick = this.handleClick.bind(this);
     }
     
 
-    constructor(props) {
-        super(props);
-        this.state = {isToggleOn: true};
-     
-        //this를 사용하기 위해서 bind를 해주어야 합니다. 
-        this.handleClick = this.handleClick.bind(this);
-      }
-    
       handleClick() {
         this.setState(prevState => ({
           isToggleOn: !prevState.isToggleOn
         }));
+        document.getElementById("pin").style.backgroundColor="red";
       }
     
+    
+
     render() {
-        const dragHandlers = {onStart: this.onStart};
         return (
 
             <Draggable handle="strong" onStart={() => this.state.isToggleOn}>
@@ -46,18 +42,23 @@ class StickyNote extends Component {
                                 
                                 <div className="change-color-button">
                                     &#x022EF;
+                                    <div className="color-tab">color
+                                    <div className="black"></div>
+                                    <div className="white"></div>
+                                    <div className="yellow"></div>
+                                    </div>
     </div>
                                 <div className="close-button">
                                     &times;
-                <span class="tooltip">닫기</span>
+                <span className="tooltip">닫기</span>
                                 </div>
                             </div>
                         </strong>
                         <section className="note-middle-wrapper">
-                            <Note_middle></Note_middle>
+                            <Note_Middle></Note_Middle>
                         </section>
                         <section className="note-bottom-wrapper">
-                            <Note_bottom></Note_bottom>
+                            <Note_Bottom></Note_Bottom>
                         </section>
                     </div>
                 </div>
