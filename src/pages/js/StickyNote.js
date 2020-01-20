@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Note_middle from './Note_middle';
-import Note_bottom from './Note_bottom';
+import Note_Middle from './Note_Middle';
+import Note_Bottom from './Note_Bottom';
 import '../css/StickyNote.css';
 import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,6 +14,7 @@ class StickyNote extends Component {
         this.state = {
             id: this.props.id,
             isToggleOn: true
+<<<<<<< HEAD
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -25,6 +26,23 @@ class StickyNote extends Component {
 
     render() {
         const dragHandlers = { onStart: this.onStart };
+=======
+        }
+        this.handleClick = this.handleClick.bind(this);
+    }
+    
+
+      handleClick() {
+        this.setState(prevState => ({
+          isToggleOn: !prevState.isToggleOn
+        }));
+        document.getElementById("pin").style.backgroundColor="red";
+      }
+    
+    
+
+    render() {
+>>>>>>> a188b95eb9b0f0f912051ff09ef406368222db8c
         return (
 
             <Draggable handle="strong" onStart={() => this.state.isToggleOn}>
@@ -38,18 +56,37 @@ class StickyNote extends Component {
 
                                 <div className="change-color-button">
                                     &#x022EF;
+<<<<<<< HEAD
                                 </div>
                                 <div className="close-button">
                                     &times;
                                     <span class="tooltip">닫기</span>
+=======
+                                    <div className="color-tab">color
+                                    <div className="black"></div>
+                                    <div className="white"></div>
+                                    <div className="yellow"></div>
+                                    </div>
+    </div>
+                                <div className="close-button">
+                                    &times;
+                <span className="tooltip">닫기</span>
+>>>>>>> a188b95eb9b0f0f912051ff09ef406368222db8c
                                 </div>
                             </div>
                         </strong>
                         <section className="note-middle-wrapper">
+<<<<<<< HEAD
                             <Note_middle />
                         </section>
                         <section className="note-bottom-wrapper">
                             <Note_bottom />
+=======
+                            <Note_Middle></Note_Middle>
+                        </section>
+                        <section className="note-bottom-wrapper">
+                            <Note_Bottom></Note_Bottom>
+>>>>>>> a188b95eb9b0f0f912051ff09ef406368222db8c
                         </section>
                     </div>
                 </div>

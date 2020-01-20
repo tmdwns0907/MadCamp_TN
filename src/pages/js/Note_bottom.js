@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import '../css/note_bottom.css';
+import '../css/Note_Bottom.css';
 import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

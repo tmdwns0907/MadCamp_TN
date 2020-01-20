@@ -2,7 +2,12 @@
     background: #FCF8D9;
 }
 
+<<<<<<< HEAD
 .note {
+=======
+.note-text {
+
+>>>>>>> a188b95eb9b0f0f912051ff09ef406368222db8c
     align-items: center;
     cursor: pointer;
     transition: all 0.15s;
