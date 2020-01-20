@@ -60,7 +60,7 @@ const config = {
             filename: 'index.html'
         }),
         new MiniCssExtractPlugin({
-            filename: 'style.css'
+            filename: '[name].css'
         }),
         new CleanWebpackPlugin(),
         new CopyWebpackPlugin([

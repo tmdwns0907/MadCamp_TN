@@ -13,8 +13,6 @@
     background:#e3fafc;
 }
 
-
-
 .change-color-button {
     height:100%;
     float:left;
@@ -46,41 +44,40 @@
 
 .color-tab {
     visibility: hidden;
-width: 200px;
-height: 150px;
-background-color: #555;
-color: #fff;
-text-align: center;
-border-radius: 6px;
-padding: 5px 0;
-position: absolute;
-z-index: 1;
-bottom: 125%;
-left: 50%;
-padding-left: 30px;
-margin-left: -30px;
-opacity: 0;
-transition: opacity 0.3s;
-  font-size: 0.75rem;
-  }
+    width: 200px;
+    height: 150px;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    padding-left: 30px;
+    margin-left: -30px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.75rem;
+}
 
-  .color-tab::after{
+.color-tab::after{
     content: "";
-position: absolute;
-top: 100%;
-left: 50%;
-margin-left: -5px;
-border-width: 5px;
-border-style: solid;
-border-color: #555 transparent transparent transparent;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
+}
   
-  }
   
-  
-  .change-color-button:hover .color-tab{
+.change-color-button:hover .color-tab{
     visibility: visible;
     opacity: 1;
-  }
+}
 
 .change-color-button:hover {
     background:#e3fafc;
@@ -93,13 +90,12 @@ border-color: #555 transparent transparent transparent;
 .close-button {
     height:100%;
     float:left;
-      position: relative;
+    position: relative;
     color: #e64980;
     cursor: pointer;
 }
 
-<<<<<<< HEAD
-.container .sticky-note-template .cursor .note-title .tooltip {
+.tooltip {
     visibility: hidden;
     width: 60px;
     background-color: #555;
@@ -117,7 +113,7 @@ border-color: #555 transparent transparent transparent;
     font-size: 0.75rem;
 }
 
-.container .sticky-note-template .cursor .note-title .tooltip::after{
+.tooltip::after{
     content: "";
     position: absolute;
     top: 100%;
@@ -125,57 +121,18 @@ border-color: #555 transparent transparent transparent;
     margin-left: -5px;
     border-width: 5px;
     border-style: solid;
-    border-color: #555 transparent transparent transparent;    
+    border-color: #555 transparent transparent transparent;
+      
 }
       
-.container .sticky-note-template .cursor .note-title .close-button:hover .tooltip{
+.close-button:hover .tooltip{
     visibility: visible;
     opacity: 1;
 }
 
-.container .sticky-note-template .cursor .note-title .close-button:hover {
+.close-button:hover {
     background: #e3fafc;
 }
-=======
-    .tooltip {
-        visibility: hidden;
-  width: 60px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px 0;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -30px;
-  opacity: 0;
-  transition: opacity 0.3s;
-      font-size: 0.75rem;
-      }
-
-      .tooltip::after{
-        content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: #555 transparent transparent transparent;
-      
-      }
-      
-      .close-button:hover .tooltip{
-        visibility: visible;
-        opacity: 1;
-      }
-
-      .close-button:hover {
-        background: #e3fafc;
-      }
->>>>>>> a188b95eb9b0f0f912051ff09ef406368222db8c
 
 .sticky-note-template {
     min-width: 100px;
@@ -197,8 +154,8 @@ border-color: #555 transparent transparent transparent;
 }
   
 .note-middle-wrapper {
-      min-width: 100px;
-      min-height: 80px;
+    min-width: 100px;
+    min-height: 80px;
     border-bottom: 1px solid #C8C7BE;
 }
   

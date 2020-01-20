@@ -1,11 +1,7 @@
 import React from 'react';
-import '../css/Note_Middle.css';
+import '../css/NoteMiddle.css';
 
-<<<<<<< HEAD
-const Note_middle = ({ value }) => {
-=======
-const Note_Middle = ({value}) => {
->>>>>>> a188b95eb9b0f0f912051ff09ef406368222db8c
+const NoteMiddle = ({ value }) => {
 
     return (
         <div className="note-middle">
@@ -16,5 +12,5 @@ const Note_Middle = ({value}) => {
     );
 };
 
-export default Note_Middle;
+export default NoteMiddle;
 

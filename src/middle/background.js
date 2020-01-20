@@ -1,7 +1,3 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
-import StickyNoteItem from '../pages/js/StickyNoteItem';
-
 // login
 /*
 chrome.browserAction.onClicked.addListener(() => {
@@ -35,7 +31,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
             if (request.action == "add-note") {
                 sendResponse({ success: true });
 
-                chrome.tabs.executeScript({ file: 'StickyNoteItem.bundle.js' });
+                chrome.tabs.executeScript({ file: 'StickyNote.bundle.js' });
                 return true;
             }
             return true;

@@ -1,16 +1,16 @@
 .form {
     display: flex;
-  }
+}
   
-  .form input {
+.form input {
     flex: 1;
     font-size: 1.25rem;
     outline: none;
     border: none;
     border-bottom: 1px solid #c5f6fa;
-  }
+}
   
-  .create-button {
+.create-button {
     flex: 1;
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
@@ -23,8 +23,8 @@
     font-weight: 600;
     cursor: pointer;
     text-align:center;
-  }
+}
   
-  .create-button:hover {
+.create-button:hover {
     background: #3bc9db;
-  }
+}
