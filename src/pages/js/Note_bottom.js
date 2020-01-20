@@ -8,7 +8,6 @@ class Note_bottom extends Component {
     render() {
         return (
             <div className= "note-bottom">
-            <FontAwesomeIcon icon={faThumbtack} />
             </div>
         );
     }
