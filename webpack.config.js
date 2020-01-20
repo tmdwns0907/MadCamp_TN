@@ -75,10 +75,10 @@ const config = {
                     }))
                 }
             },
+            /*
             {
                 from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js'
-            }
-            /*
+            },
             {
                 from: 'public/static',
             },

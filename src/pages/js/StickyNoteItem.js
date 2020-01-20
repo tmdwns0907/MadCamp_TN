@@ -7,25 +7,14 @@ class StickyNoteItem extends Component {
             <div>
                 StickyNote!! <br />
                 StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
-                StickyNote!! <br />
             </div>
         );
     }
 };
 
-//export default StickyNoteItem;
+//alert('asdfasdfaqsdfasdf');
+
+const stickyNote = document.createElement('div');
+stickyNote.id = "stickyNote";
+document.body.appendChild(stickyNote);
+ReactDOM.render(<StickyNoteItem />, stickyNote);

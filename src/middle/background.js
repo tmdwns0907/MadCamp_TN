@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import StickyNoteItem from '../pages/js/StickyNoteItem';
 
+
 // recognize focus change
 chrome.windows.onFocusChanged.addListener(winId => {
     chrome.tabs.query({ 'windowId': winId, 'active': true }, tabs => {
@@ -10,12 +11,6 @@ chrome.windows.onFocusChanged.addListener(winId => {
 
         if (typeof currentURL != 'undefined')
             console.log(currentURL);
-
-        /*
-        chrome.tabs.sendMessage(tabs[0].id, { data: tabs[0] }, function (response) {
-            console.log('success');
-        });
-        */
     })
 }, {
     windowTypes: ['normal'],
@@ -128,20 +123,42 @@ chrome.runtime.onConnect.addListener(port => {
 });
 */
 
-
+/*
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     console.log("hihi");
     console.log(request.action);
 
     if (request.action == "add-note") {
         sendResponse({ success: true });
-
         chrome.runtime.sendMessage({ action: "add-note-content" }, res => {
+            //console.log(res.request);
+            //console.log(res.sender);
+            
             console.log(res.success);
-            alert(res.success);
+            //alert(res.success);
             
         })
+        
         return true;
     }
     return true;
 });
+*/
+
+//background -> content injection
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+    if (changeInfo.status == 'complete') {
+        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+            console.log("hihi");
+            console.log(request.action);
+
+            if (request.action == "add-note") {
+                sendResponse({ success: true });
+
+                chrome.tabs.executeScript({ file: 'StickyNoteItem.bundle.js' });
+                return true;
+            }
+            return true;
+        });
+    }
+})
