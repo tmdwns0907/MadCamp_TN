@@ -27,9 +27,10 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
             console.log("hihi");
             console.log(request.action);
+            console.log(tab.url);
 
             if (request.action == "add-note") {
-                sendResponse({ success: true });
+                sendResponse({ success: true, url: tab.url });
 
                 chrome.tabs.executeScript({ file: 'StickyNote.bundle.js' });
                 return true;

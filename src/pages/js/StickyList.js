@@ -9,11 +9,12 @@ class StickyList extends Component {
         super(props);
         this.state = {
             input: '',
+            url: '',
             notes: [
                 { id: 0, text: ' 리액트 소개', url: '', checked: false },
                 { id: 1, text: ' 리액트 소개', url: '', checked: true },
                 { id: 2, text: ' 리액트 소개', url: '', checked: false },
-            ]
+            ],
         }
     }
     id = 3;
@@ -30,7 +31,7 @@ class StickyList extends Component {
             notes: notes.concat({
                 id: this.id++,
                 text: input,
-                url: '',
+                url: url,
                 checked: false
             })
         });
@@ -82,8 +83,8 @@ class StickyList extends Component {
 
         // popup -> background
         chrome.runtime.sendMessage({ action: "add-note" }, res => {
-            console.log(res.success);
-            //alert(res.success);
+            this.setState({ url: res.url });
+            alert(res.url);
         })
 
     }

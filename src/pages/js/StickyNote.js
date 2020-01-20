@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import ReactDOM from 'react-dom';
 import NoteMiddle from './NoteMiddle';
 import NoteBottom from './NoteBottom';
-//import '../css/StickyNote.css';
+import '../css/StickyNote.css';
 import { faThumbtack } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Draggable, { DraggableCore } from 'react-draggable'; // Both at the same time
@@ -11,14 +12,20 @@ class StickyNote extends Component {
         super(props);
         this.state = {
             id: this.props.id,
-            isToggleOn: true
+            isToggleOn: true,
+            text: "Add your Note!",
         };
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
 
     handleClick() {
         this.setState(prevState => ({ isToggleOn: !prevState.isToggleOn }));
+    }
+
+    handleChange(event) {
+        this.setState({ text: event.target.value });
     }
 
     render() {
@@ -36,7 +43,8 @@ class StickyNote extends Component {
 
                                 <div className="change-color-button">
                                     &#x022EF;
-                                    <div className="color-tab">color
+                                    <div className="color-tab">
+                                        color
                                         <div className="black"></div>
                                         <div className="white"></div>
                                         <div className="yellow"></div>
@@ -49,7 +57,7 @@ class StickyNote extends Component {
                             </div>
                         </strong>
                         <section className="note-middle-wrapper">
-                            <NoteMiddle />
+                            <NoteMiddle value={this.state.text} onChange={this.handleChange} />
                         </section>
                         <section className="note-bottom-wrapper">
                             <NoteBottom />
