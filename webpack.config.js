@@ -11,7 +11,9 @@ const config = {
         popup: "./src/index.js",
         background: "./src/middle/background.js",
         content: "./src/middle/content.js",
-        StickyNote: "./src/pages/js/StickyNote.js"
+        StickyNote: "./src/pages/js/StickyNote.js",
+        removeStickyNote: "./src/middle/RemoveStickyNote.js"
+
     },
     output: {
         path: path.resolve(__dirname + "/build"),

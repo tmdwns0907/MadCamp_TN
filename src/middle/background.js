@@ -22,6 +22,37 @@ chrome.windows.onFocusChanged.addListener(winId => {
 
 
 //background -> content injection
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+    console.log("hihi");
+    console.log(request.action);
+    console.log(request.url);
+
+    switch (request.action) {
+        case "add-note":
+            sendResponse({ success: true });
+            chrome.tabs.executeScript({ file: 'StickyNote.bundle.js' });
+            chrome.tabs.insertCSS({ file: 'StickyNote.css' });
+            return true;
+            
+        case "remove-note":
+            sendResponse({ success: true });
+            chrome.tabs.executeScript({ file: 'removeStickyNote.bundle.js' });
+            return true;
+    }
+    /*
+    if (request.action == "add-note") {
+        sendResponse({ success: true });
+
+        chrome.tabs.executeScript({ file: 'StickyNote.bundle.js' });
+        chrome.tabs.insertCSS({ file: 'StickyNote.css' });
+        return true;
+    }
+    */
+    return true;
+});
+
+/*
 chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
     if (changeInfo.status == 'complete') {
         chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -39,6 +70,7 @@ chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
         });
     }
 })
+*/
 
 // recognize removed note
 /*

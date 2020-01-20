@@ -8,7 +8,7 @@ class StickyList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            input: '',
+            input: 'Add your Note!',
             url: '',
             notes: [
                 { id: 0, text: ' 리액트 소개', url: '', checked: false },
@@ -25,16 +25,25 @@ class StickyList extends Component {
     }
 
     handleCreate = () => {
-        const { input, notes, url } = this.state;
-        this.setState({
-            input: '',
-            notes: notes.concat({
-                id: this.id++,
-                text: input,
-                url: url,
-                checked: false
+        const { input, notes } = this.state;
+
+        // popup -> background
+        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+            chrome.runtime.sendMessage({ action: "add-note", url: tabs[0].url }, res => {
+                this.setState({
+                    input: 'Add your Note!',
+                    notes: notes.concat({
+                        id: this.id++,
+                        text: input,
+                        url: tabs[0].url,
+                        checked: false
+                    })
+                });
+                alert(res.success);
             })
-        });
+        })
+
+
 
         /*
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -79,14 +88,6 @@ class StickyList extends Component {
             });
         });
         */
-
-
-        // popup -> background
-        chrome.runtime.sendMessage({ action: "add-note" }, res => {
-            this.setState({ url: res.url });
-            alert(res.url);
-        })
-
     }
 
     handleKeyPress = (e) => {
@@ -112,7 +113,15 @@ class StickyList extends Component {
 
     handleRemove = (id) => {
         const { notes } = this.state;
-        this.setState({ notes: notes.filter(note => note.id !== id) });
+
+        //popup -> background
+        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
+            chrome.runtime.sendMessage({ action: "remove-note", url: tabs[0].url }, res => {
+                this.setState({ notes: notes.filter(note => note.id !== id) });
+                alert(res.success);
+            })
+        })
+        
     }
 
     render() {

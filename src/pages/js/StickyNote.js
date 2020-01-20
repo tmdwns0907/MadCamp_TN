@@ -13,37 +13,25 @@ class StickyNote extends Component {
         this.state = {
             id: this.props.id,
             isToggleOn: true,
-<<<<<<< HEAD
-            pincolor: ''
-        }
-=======
+            pincolor: '',
             text: "Add your Note!",
         };
 
->>>>>>> 9365c554354ac544fa5dc6b1d7225810c89b9333
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
     }
 
-<<<<<<< HEAD
-      handleClick() {
-          const newColor=this.state.isToggleOn?"red":"gray"
-        this.setState(prevState => ({
-          isToggleOn: !prevState.isToggleOn,
-          pincolor: newColor
-        }));
-      }
-    
-    
-=======
     handleClick() {
-        this.setState(prevState => ({ isToggleOn: !prevState.isToggleOn }));
+        const newColor = this.state.isToggleOn ? "red" : "gray";
+        this.setState(prevState => ({
+            isToggleOn: !prevState.isToggleOn,
+            pincolor: newColor
+        }));
     }
 
     handleChange(event) {
         this.setState({ text: event.target.value });
     }
->>>>>>> 9365c554354ac544fa5dc6b1d7225810c89b9333
 
     render() {
         const dragHandlers = { onStart: this.onStart };
@@ -54,18 +42,11 @@ class StickyNote extends Component {
                     <div className="sticky-note-template">
                         <strong className="cursor">
                             <div className="note-title">
-<<<<<<< HEAD
-                                
-                                    <FontAwesomeIcon className="pin" style={{color: this.state.pincolor}} onClick={this.handleClick} icon={faThumbtack} >
-                                        {this.state.isToggleOn ? console.log("on") : console.log("off")}
-                                    </FontAwesomeIcon>
-                                
-=======
-                                <FontAwesomeIcon className="pin" onClick={this.handleClick} icon={faThumbtack} >
+
+                                <FontAwesomeIcon className="pin" style={{ color: this.state.pincolor }} onClick={this.handleClick} icon={faThumbtack} >
                                     {this.state.isToggleOn ? console.log("on") : console.log("off")}
                                 </FontAwesomeIcon>
 
->>>>>>> 9365c554354ac544fa5dc6b1d7225810c89b9333
                                 <div className="change-color-button">
                                     &#x022EF;
                                     <div className="color-tab">
@@ -89,7 +70,7 @@ class StickyNote extends Component {
                         </section>
                     </div>
                 </div>
-            </Draggable >
+            </Draggable>
         );
     }
 };
