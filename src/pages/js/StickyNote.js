@@ -64,7 +64,7 @@ class StickyNote extends Component {
                                 </div>
                                 <div className="close-button">
                                     &times;
-                <span className="tooltip">닫기</span>
+                                    <span className="tooltip">닫기</span>
                                 </div>
                             </div>
                         </strong>

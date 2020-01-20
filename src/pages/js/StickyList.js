@@ -19,6 +19,25 @@ class StickyList extends Component {
     }
     id = 3;
 
+    componentDidMount() {
+        // add when right click
+        chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+            if (request.action == 'add-note-right') {
+                sendResponse({ success: true });
+                this.setState({
+                    input: 'Add your Note!',
+                    notes: notes.concat({
+                        id: this.id++,
+                        text: input,
+                        url: request.url,
+                        checked: false
+                    })
+                });
+                return true;
+            }
+            return true;
+        })
+    }
 
     handleChange = (e) => {
         this.setState({ input: e.target.value });
