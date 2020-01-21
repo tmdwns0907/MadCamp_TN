@@ -1,10 +1,15 @@
 .container {
     background: white;
-    width:100px;
-    height:100px;
+    width:200px;
+    height:200px;
+
+    position: absolute;
+    left:200px;
 }
 
 .pin {
+    margin: 5px 5px 5px 5px;
+    font-size: 20px;
     height:100%;
     float:left;
     cursor: pointer;
@@ -16,8 +21,10 @@
 }
 
 .change-color-button {
+    margin: 5px 5px 5px 5px;
     height:100%;
     float:left;
+    font-size: 15px;
     position: relative;
     cursor: pointer;
     color: gray;
@@ -27,38 +34,63 @@
     float:left;
     width: 30px;
     height: 30px;
-    background: blue;
+    background: #D2F3FC;
 }
 
 .gray {
     float:left;
     width: 30px;
     height: 30px;
-    background: gray;
+    background: #C1C1C2;
 }
 
 .yellow {
     float:left;
     width: 30px;
     height: 30px;
-    background: yellow;
+    background: #FCF8D9;
+}
+
+.green {
+    float:left;
+    width: 30px;
+    height: 30px;
+    background: #E9FEEA;
+}
+.pink {
+    float:left;
+    width: 30px;
+    height: 30px;
+    background: #FDE2FB;
+}
+.purple {
+    float:left;
+    width: 30px;
+    height: 30px;
+    background: #F3DAFA;
+}
+.charcoal {
+    float:left;
+    width: 30px;
+    height: 30px;
+    background: #8A898B;
 }
 
 .color-tab {
     visibility: hidden;
-    width: 200px;
-    height: 150px;
+    width: 210px;
+    height: 30px;
     background-color: #555;
     color: #fff;
     text-align: center;
     border-radius: 6px;
-    padding: 5px 0;
     position: absolute;
     z-index: 1;
     bottom: 125%;
-    left: 50%;
-    padding-left: 30px;
+    left:-80px;
+    padding:10px 10px 10px 10px;
     margin-left: -30px;
+
     opacity: 0;
     transition: opacity 0.3s;
     font-size: 0.75rem;
@@ -89,12 +121,17 @@
     background: #e64980;
 }
 
-.close-button {
+.times-button {
+    margin: 5px 5px 5px 5px;
     height:100%;
-    float:left;
+    float:right;
     position: relative;
-    color: #e64980;
     cursor: pointer;
+}
+
+.times-icon {
+    font-size: 20px;
+    color: #e64980;
 }
 
 .tooltip {
@@ -127,16 +164,16 @@
       
 }
       
-.close-button:hover .tooltip{
+.times-button:hover .tooltip{
     visibility: visible;
     opacity: 1;
 }
 
-.close-button:hover {
+.times-button:hover {
     background: #e3fafc;
 }
 
-.sticky-note-template {
+/*.sticky-note-template {
     min-width: 100px;
     min-height: 100px;
     max-width: 500px;
@@ -145,48 +182,47 @@
     
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     margin: 0 auto;
-    /*margin-top: 1rem;*/
-}
+    margin-top: 1rem;
+}*/
   
 .note-title {
-    height:20px;
     background: #FCF4AD;
     color: white;
     border-bottom: 1px solid #C8C7BE;
+    display: inline-block;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
   
 .note-middle-wrapper {
-    min-width: 100px;
-    min-height: 80px;
+    min-width: 200px;
+    min-height: 180px;
     background: #FCF8D9;
     border-bottom: 1px solid #C8C7BE;
+    display: inline-block;
 }
-  
-.note-text {
-    align-items: center;
-    cursor: pointer;
-    transition: all 0.15s;
-    user-select: none;
-}
-
 
   .note-middle-wrapper textarea {
-    width: 80px;
-    height: 80px;
-    min-width: 80px;
-    min-height: 80px;
-    max-width: 100%;
-    max-height: 100%;
-    font-size: 1rem;
+    width: 190px;
+    height: 180px;
+    min-width: 190px;
+    min-height: 180px;
+    max-width: 500px;
+    max-height: 460px;
+    font-size: 16px;
+    font-family: Georgia, "Times New Roman", serif;
     outline: none;
     border: none;
     padding: 5px 5px 5px 5px;
     background: #FCF8D9;
 }
 
-.note-bottom-wrapper {
-    height: 50px;
+.my-text::placeholder{
+    opacity:0.5;
+}
+
+/*.note-bottom-wrapper {
+    height: 20px;
     background: #FCF8D9;
     overflow:auto;
-}
+}*/
 
