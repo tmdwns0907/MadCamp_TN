@@ -39,11 +39,15 @@ class StickyNote extends Component {
 
     handleChange(event) {
         this.setState({ text: event.target.value });
+
+        chrome.runtime.sendMessage({ action: "change-note", text: event.target.value, id: this.state.id }, res => {
+            //this.changeState(res.state);
+            alert(res.success);
+        })
     }
 
     render() {
         return (
-
             <Draggable handle="strong" onStart={() => this.state.isToggleOn}>
                 <div className="container">
                     <div className="sticky-note-template">
@@ -79,9 +83,12 @@ class StickyNote extends Component {
             </Draggable>
         );
     }
-
-
 };
+
+chrome.storage.sync.get(null, items => {
+    var allkeys = Object.keys(items);
+    
+})
 
 const sticky = document.createElement('div');
 sticky.id = "stickyNote";
