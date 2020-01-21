@@ -24,7 +24,7 @@ class Login extends Component {
 
         chrome.runtime.sendMessage({ action: "get-user-info" }, res => {
             //this.changeState(res.state);
-            alert(res.success);
+            //alert(res.success);
         })
     }
 

@@ -9,7 +9,7 @@ chrome.runtime.onInstalled.addListener(details => {
 
 // background -> popup & content
 chrome.contextMenus.onClicked.addListener((info) => {
-    if (info.menuItemId == '1') {
+    if (info.menuItemId == 'add-sticky-note') {
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
             if (tabs.length != 'undefined' && tabs.length == 1)
                 var currentURL = tabs[0].url;
@@ -20,8 +20,67 @@ chrome.contextMenus.onClicked.addListener((info) => {
             chrome.runtime.sendMessage({ action: 'add-note-right', url: currentURL }, res => {
                 chrome.tabs.executeScript({ file: 'StickyNote.bundle.js' });
                 chrome.tabs.insertCSS({ file: 'StickyNote.css' });
+
+                chrome.storage.sync.get('maxID', id => {
+                    // if empty
+                    if (isNaN(parseInt(id))) {
+                        chrome.storage.sync.set({ 'maxID': 0 }, () => {
+                            sendResponse({ id: 0 });
+                        });
+                    }
+                    else {
+                        chrome.storage.sync.set({ 'maxID': id + 1 }, () => {
+                            if (chrome.extension.lastError) {
+                                alert('An error occurred: ' + chrome.extension.lastError.message);
+                            }
+                        })
+                        sendResponse({ id: id + 1 });
+                    }
+                })
+
+                chrome.storage.sync.get('Notes', items => {
+                    var allKeys = Object.keys(items);
+                    var list = [];
+                    var parsedItems = Object.keys(items).map(key => items[key]);
+                    var maxID = 0;
+
+                    console.log(allKeys);
+                    console.log(parsedItems[0]);
+
+                    for (var key in parsedItems[0]) {
+                        console.log(key, parsedItems[0][key]);
+                        list.push({
+                            id: key,
+                            text: parsedItems[0][key].text,
+                            url: parsedItems[0][key].url,
+                            checked: false,
+                        })
+                    }
+
+                    if (typeof parsedItems[0] !== 'undefined' && parsedItems[0].length > 0)
+                        maxID = parsedItems[0].length.toString();
+
+                    else maxID = 0;
+
+                    list.push({
+                        id: maxID,
+                        text: 'Add you Note!',
+                        url: currentURL,
+                        checked: false
+                    });
+
+                    console.log(list);
+
+                    chrome.storage.sync.set({ 'Notes': list }, () => {
+                        if (chrome.extension.lastError) {
+                            alert('An error occurred: ' + chrome.extension.lastError.message);
+                        }
+                    });
+                })
+
                 console.log(res.success);
             });
+
         })
     }
 })
@@ -50,12 +109,7 @@ const STATE_AUTHTOKEN_ACQUIRED = 3;
 chrome.storage.onChanged.addListener((changes, namespace) => {
     for (var key in changes) {
         var storageChange = changes[key];
-        console.log('Storage key "%s" in namespace "%s" changed. ' +
-            'Old value was "%s", new value is "%s".',
-            key,
-            namespace,
-            storageChange.oldValue,
-            storageChange.newValue);
+        console.log(`Storage key ${key} in namespace ${namespace} changed. Old value was ${storageChange.oldValue}, new value is ${storageChange.newValue}.`);
     }
 });
 
@@ -67,30 +121,146 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
     switch (request.action) {
         case "add-note":
-            sendResponse({ success: true });
             chrome.tabs.executeScript({ file: 'StickyNote.bundle.js' });
             chrome.tabs.insertCSS({ file: 'StickyNote.css' });
 
-            const newNote = { 'text': request.text, 'url': request.url, 'id': request.id };
-            const key = request.id;
-            chrome.storage.sync.set({ key: newNote }, () => {
-                message('Settings saved');
-            });
+            chrome.storage.sync.get('maxID', id => {
+                // if empty
+                if (isNaN(parseInt(id))) {
+                    chrome.storage.sync.set({ 'maxID': 0 }, () => {
+                        sendResponse({ id: 0 });
+                    });
+                }
+                else {
+                    chrome.storage.sync.set({ 'maxID': id + 1 }, () => {
+                        if (chrome.extension.lastError) {
+                            alert('An error occurred: ' + chrome.extension.lastError.message);
+                        }
+                    })
+                    sendResponse({ id: id + 1 });
+                }
+            })
 
+            chrome.storage.sync.get('Notes', items => {
+                var allKeys = Object.keys(items);
+                var list = [];
+                var parsedItems = Object.keys(items).map(key => items[key]);
+                var maxID = 0;
+
+                console.log(allKeys);
+                console.log(parsedItems[0]);
+
+                for (var key in parsedItems[0]) {
+                    console.log(key, parsedItems[0][key]);
+                    list.push({
+                        id: key,
+                        text: parsedItems[0][key].text,
+                        url: parsedItems[0][key].url,
+                        checked: false,
+                    })
+                }
+
+                if (typeof parsedItems[0] !== 'undefined' && parsedItems[0].length > 0)
+                    maxID = parsedItems[0].length.toString();
+
+                else maxID = 0;
+
+                list.push({
+                    id: maxID,
+                    text: request.text,
+                    url: request.url,
+                    checked: false
+                });
+
+                console.log(list);
+
+                chrome.storage.sync.set({ 'Notes': list }, () => {
+                    if (chrome.extension.lastError) {
+                        alert('An error occurred: ' + chrome.extension.lastError.message);
+                    }
+                });
+            })
             return true;
 
         case "remove-note":
             sendResponse({ success: true });
             chrome.tabs.executeScript({ file: 'removeStickyNote.bundle.js' });
-            chrome.storage.sync.get(null, items => {
-                items.note
+
+            chrome.storage.sync.get('Notes', items => {
+                var NoteList = Object.keys(items).map(key => items[key])[0];
+                console.log(NoteList);
+
+                NoteList = NoteList.filter(it => it.id !== request.id);
+
+                console.log(NoteList);
+
+                chrome.storage.sync.set({ 'Notes': NoteList }, () => { })
+            })
+
+            chrome.storage.sync.get('maxID', id => {
+                console.log(id);
+
+                chrome.storage.sync.set({ 'maxID': id - 1 }, () => {
+                    if (chrome.extension.lastError) {
+                        alert('An error occurred: ' + chrome.extension.lastError.message);
+                    }
+                })
             })
             return true;
 
-        case "change-note":
-            chrome.runtime.sendMessage({ action: "change-note-list", text: request.text, id: request.id }, res => {
+        case "remove-note-content":
+            return true;
 
+
+        case "change-note":
+            chrome.storage.sync.get(request.id, item => {
+                const change = {
+                    text: request.text,
+                };
+                /*
+                chrome.storage.sync.set({ maxID: id - 1 }, () => {
+                    if (chrome.extension.lastError) {
+                        alert('An error occurred: ' + chrome.extension.lastError.message);
+                    }
+                })
+                */
             })
+
+            chrome.runtime.sendMessage({ action: "change-note-list", text: request.text, id: request.id }, res => {
+                console.log(res.success);
+            })
+            return true;
+
+        case "load-notes":
+            chrome.storage.sync.get('Notes', (items) => {
+                var list = [];
+                var parsedItems = Object.keys(items).map(key => items[key]);
+
+                console.log(parsedItems);
+
+                for (var key in parsedItems[0]) {
+                    console.log(key, parsedItems[0][key]);
+                    list.push({
+                        id: key,
+                        text: parsedItems[0][key].text,
+                        url: parsedItems[0][key].url,
+                        checked: false,
+                    })
+                }
+
+                console.log(list);
+
+                chrome.storage.sync.get('maxID', id => {
+                    // if empty
+                    if (isNaN(parseInt(id))) {
+                        chrome.storage.sync.set({ 'maxID': 0 }, maxID => {
+                            sendResponse({ maxID: maxID, note_list: list });
+                        })
+                    }
+                    else sendResponse({ maxID: id, note_list: list });
+                })
+            });
+
             return true;
 
         case "sign-in":
@@ -149,7 +319,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                     }
                     //else sendResponse({ state: STATE_START });
                     chrome.identity.getProfileUserInfo(user_info => {
-                        sendResponse({ success: user_info.email });
+                        sendResponse({ success: user_info.id });
                     })
                 });
 

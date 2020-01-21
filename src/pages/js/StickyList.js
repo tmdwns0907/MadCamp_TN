@@ -10,19 +10,19 @@ class StickyList extends Component {
         this.state = {
             input: 'Add your Note!',
             url: '',
-            notes: [
-                { id: 0, text: ' 리액트 소개', url: '', checked: false },
-                { id: 1, text: ' 리액트 소개', url: '', checked: true },
-                { id: 2, text: ' 리액트 소개', url: '', checked: false },
-            ],
+            notes: [],
         }
     }
-    id = 3;
 
     componentDidMount() {
         chrome.runtime.sendMessage({ action: "get-user-info" }, res => {
             //this.changeState(res.state);
             alert(res.success);
+        })
+
+        chrome.runtime.sendMessage({ action: "load-notes" }, res => {
+            console.log()
+            this.setState({ notes: res.note_list });
         })
 
         // add when right click
@@ -32,7 +32,7 @@ class StickyList extends Component {
                     sendResponse({ success: true });
                     this.setState({
                         input: 'Add your Note!',
-                        notes: notes.concat({
+                        notes: this.state.notes.concat({
                             id: this.id++,
                             text: input,
                             url: request.url,
@@ -42,12 +42,21 @@ class StickyList extends Component {
                     return true;
 
                 case 'change-note-list':
-                    
+                    sendResponse({ success: 'change note!!!' });
                     this.setState({
-
+                        notes: this.state.notes.map(note => {
+                            if (note.id === request.id) {
+                                return ({
+                                    ...note,
+                                    text: request.text,
+                                });
+                            }
+                            else {
+                                return note;
+                            }
+                        })
                     })
                     return true;
-
             }
             return true;
         })
@@ -66,61 +75,14 @@ class StickyList extends Component {
                 this.setState({
                     input: 'Add your Note!',
                     notes: notes.concat({
-                        id: this.id++,
+                        id: res.id,
                         text: input,
                         url: tabs[0].url,
                         checked: false
                     })
                 });
-                //alert(res.success);
             })
         })
-
-
-
-        /*
-        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            const port = chrome.tabs.connect(tabs[0].id, { name: "connect" });
-    
-            port.postMessage({ action: "add-note" });
-    
-            port.onMessage.addListener(res => {
-                console.log(res.success);
-            })
-        });
-        */
-
-        /*
-        chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            console.log(tabs[0]);
-            alert(tabs[0].id);
-            
-            chrome.tabs.sendMessage(tabs[0].id, { action: "add-note" }, res => {
-                //console.log(res.success);
-            })
-           
-        });
-        */
-
-        /*
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            alert(47654765756);
-            chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (response) {
-                alert(123123123);
-                console.log(response.farewell);
-            });
-        });
-        */
-
-        /*
-        chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-            alert(47654765756);
-            chrome.tabs.sendMessage(tabs[0].id, { greeting: "hello" }, function (response) {
-                alert(123123123);
-                console.log(response.farewell);
-            });
-        });
-        */
     }
 
     handleKeyPress = (e) => {
@@ -149,7 +111,7 @@ class StickyList extends Component {
 
         //popup -> background
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            chrome.runtime.sendMessage({ action: "remove-note", url: tabs[0].url }, res => {
+            chrome.runtime.sendMessage({ action: "remove-note", id: id }, res => {
                 this.setState({ notes: notes.filter(note => note.id !== id) });
                 //alert(res.success);
             })
