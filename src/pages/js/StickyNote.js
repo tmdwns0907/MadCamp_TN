@@ -26,7 +26,8 @@ class StickyNote extends Component {
             bottom_color: "#FCF8D9",
 
             
-            top: "200px"
+            ctop: 200, left: 200
+              
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -47,14 +48,30 @@ class StickyNote extends Component {
         const temp=scrolledTopLength+relativeTop
         console.log(temp)
         const newTop = this.state.isToggleOn ? relativeTop:temp
+        console.log(newTop)
+        console.log(this.state.ctop)
+        console.log(this.state.pinbgcolor)
         this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn,
+            isToggleOn: !this.state.isToggleOn,
             pinbgcolor: newColor,
-            position: newPos,
-            top:newTop
+            ctop: prevState.ctop-prevState.ctop+newTop,
+            position: newPos
         }));
         //window.pageYOffset=0
+        console.log(this.state.ctop)
+        console.log(this.state.pinbgcolor)
     }
+
+    handleDrag = (e, ui) => {
+        console.log(ui.deltaY)
+        this.setState({
+          
+            
+            ctop:  this.state.ctop+ui.deltaY,
+            left: this.state.left + ui.deltaX
+        });
+        console.log(this.state.ctop)
+      };
 
     yellowClick = () => {
         this.setState(prevState => ({
@@ -130,8 +147,8 @@ class StickyNote extends Component {
 
     render() {
         return (
-            <Draggable cancel="strong"  onStart={() => this.state.isToggleOn}>
-                <div className="container" style={{position: this.state.position, top:this.state.top}}>
+            <Draggable cancel="strong" onDrag={this.handleDrag}>
+                <div className="container" style={{position: this.state.position, top:this.state.ctop, left:this.state.left}}>
                     
 
                         <div className="note-title" style={{ background: this.state.top_color }}>
