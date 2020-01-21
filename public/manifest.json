@@ -6,7 +6,8 @@
   "minimum_chrome_version": "23",
   "browser_action": {
     "default_popup": "index.html",
-    "default_title": "Chrome Sticky Note"
+    "default_title": "Chrome Sticky Note",
+    "default_icon":"icon.png"
   },
   "externally_connectable": {
     "ids": [

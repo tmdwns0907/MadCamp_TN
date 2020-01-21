@@ -23,7 +23,14 @@ class StickyNote extends Component {
 
             top_color: "#FCF4AD",
             bottom_color: "#FCF8D9",
+<<<<<<< HEAD
             top: "200px"
+=======
+
+            
+            ctop: 200, left: 200
+              
+>>>>>>> 284e234be835437c72f80cf10f0072a7ce16190b
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -33,6 +40,7 @@ class StickyNote extends Component {
 
 
     handleClick() {
+<<<<<<< HEAD
         const newColor = this.state.isToggleOn ? "#e3fafc" : '';
         const newPos = this.state.isToggleOn ? "fixed" : "absolute";
         const target = document.getElementsByClassName('container')[0];
@@ -48,14 +56,48 @@ class StickyNote extends Component {
         console.log(temp);
 
         const newTop = this.state.isToggleOn ? relativeTop : temp;
+=======
+        const newColor = this.state.isToggleOn ? "#e3fafc" : ''
+        const newPos = this.state.isToggleOn ? "fixed" : "absolute"
+        const target=document.getElementsByClassName('container')[0]
+        const clientRect=target.getBoundingClientRect()
+        const relativeTop = clientRect.top
+        const scrolledTopLength=window.pageYOffset
+        console.log(scrolledTopLength)
+        console.log(this.state.isToggleOn)
+        const temp=scrolledTopLength+relativeTop
+        console.log(temp)
+        const newTop = this.state.isToggleOn ? relativeTop:temp
+        console.log(newTop)
+        console.log(this.state.ctop)
+        console.log(this.state.pinbgcolor)
+>>>>>>> 284e234be835437c72f80cf10f0072a7ce16190b
         this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn,
+            isToggleOn: !this.state.isToggleOn,
             pinbgcolor: newColor,
+<<<<<<< HEAD
             position: newPos,
             top: newTop
+=======
+            ctop: prevState.ctop-prevState.ctop+newTop,
+            position: newPos
+>>>>>>> 284e234be835437c72f80cf10f0072a7ce16190b
         }));
         //window.pageYOffset=0
+        console.log(this.state.ctop)
+        console.log(this.state.pinbgcolor)
     }
+
+    handleDrag = (e, ui) => {
+        console.log(ui.deltaY)
+        this.setState({
+          
+            
+            ctop:  this.state.ctop+ui.deltaY,
+            left: this.state.left + ui.deltaX
+        });
+        console.log(this.state.ctop)
+      };
 
     yellowClick = () => {
         this.setState(prevState => ({
@@ -137,6 +179,7 @@ class StickyNote extends Component {
 
     render() {
         return (
+<<<<<<< HEAD
             <Draggable cancel="strong" onStart={() => this.state.isToggleOn}>
                 <div className="container" style={{ position: this.state.position, top: this.state.top }}>
                     <div className="note-title" style={{ background: this.state.top_color }}>
@@ -146,6 +189,19 @@ class StickyNote extends Component {
                         </FontAwesomeIcon>
                         <span className="right-side" style={{ float: "right" }}>
                             <span className="change-color-button" style={{ background: this.state.cbtbgcolor }} onClick={this.buttonClick}>
+=======
+            <Draggable cancel="strong" onDrag={this.handleDrag}>
+                <div className="container" style={{position: this.state.position, top:this.state.ctop, left:this.state.left}}>
+                    
+
+                        <div className="note-title" style={{ background: this.state.top_color }}>
+
+                            <FontAwesomeIcon className="pin" style={{ background: this.state.pinbgcolor}} onClick={this.handleClick} icon={faThumbtack} >
+                                {this.state.isToggleOn ? console.log("on") : console.log("off")}
+                            </FontAwesomeIcon>
+                            <span className= "right-side" style={{float:"right"}}>
+                            <span className="change-color-button" style={{  background: this.state.cbtbgcolor }} onClick={this.buttonClick}>
+>>>>>>> 284e234be835437c72f80cf10f0072a7ce16190b
                                 &#x022EF;
                                     <div className="color-tab"
                                     style={{
