@@ -1,5 +1,7 @@
 .container {
     background: white;
+    width:100px;
+    height:100px;
 }
 
 .pin {
@@ -21,18 +23,18 @@
     color: gray;
 }
 
-.black {
+.blue {
     float:left;
     width: 30px;
     height: 30px;
-    background: black;
+    background: blue;
 }
 
-.white {
+.gray {
     float:left;
     width: 30px;
     height: 30px;
-    background: white;
+    background: gray;
 }
 
 .yellow {
@@ -74,10 +76,10 @@
 }
   
   
-.change-color-button:hover .color-tab{
+/*.change-color-button:hover .color-tab{
     visibility: visible;
     opacity: 1;
-}
+}*/
 
 .change-color-button:hover {
     background:#e3fafc;
@@ -140,7 +142,7 @@
     max-width: 500px;
     max-height: 500px;
 
-    background: #FCF8D9;
+    
     box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
     margin: 0 auto;
     /*margin-top: 1rem;*/
@@ -156,10 +158,35 @@
 .note-middle-wrapper {
     min-width: 100px;
     min-height: 80px;
+    background: #FCF8D9;
     border-bottom: 1px solid #C8C7BE;
 }
   
+.note-text {
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.15s;
+    user-select: none;
+}
+
+
+  .note-middle-wrapper textarea {
+    width: 80px;
+    height: 80px;
+    min-width: 80px;
+    min-height: 80px;
+    max-width: 100%;
+    max-height: 100%;
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    padding: 5px 5px 5px 5px;
+    background: #FCF8D9;
+}
+
 .note-bottom-wrapper {
-    height: 20px;
+    height: 50px;
+    background: #FCF8D9;
+    overflow:auto;
 }
 
