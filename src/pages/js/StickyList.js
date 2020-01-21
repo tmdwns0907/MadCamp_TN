@@ -20,20 +20,34 @@ class StickyList extends Component {
     id = 3;
 
     componentDidMount() {
+        chrome.runtime.sendMessage({ action: "get-user-info" }, res => {
+            //this.changeState(res.state);
+            alert(res.success);
+        })
+
         // add when right click
         chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-            if (request.action == 'add-note-right') {
-                sendResponse({ success: true });
-                this.setState({
-                    input: 'Add your Note!',
-                    notes: notes.concat({
-                        id: this.id++,
-                        text: input,
-                        url: request.url,
-                        checked: false
+            switch (request.action) {
+                case 'add-note-right':
+                    sendResponse({ success: true });
+                    this.setState({
+                        input: 'Add your Note!',
+                        notes: notes.concat({
+                            id: this.id++,
+                            text: input,
+                            url: request.url,
+                            checked: false
+                        })
+                    });
+                    return true;
+
+                case 'change-note-list':
+                    
+                    this.setState({
+
                     })
-                });
-                return true;
+                    return true;
+
             }
             return true;
         })
@@ -48,7 +62,7 @@ class StickyList extends Component {
 
         // popup -> background
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
-            chrome.runtime.sendMessage({ action: "add-note", url: tabs[0].url }, res => {
+            chrome.runtime.sendMessage({ action: "add-note", url: tabs[0].url, text: this.state.input }, res => {
                 this.setState({
                     input: 'Add your Note!',
                     notes: notes.concat({
@@ -58,7 +72,7 @@ class StickyList extends Component {
                         checked: false
                     })
                 });
-                alert(res.success);
+                //alert(res.success);
             })
         })
 
@@ -67,9 +81,9 @@ class StickyList extends Component {
         /*
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
             const port = chrome.tabs.connect(tabs[0].id, { name: "connect" });
-
+    
             port.postMessage({ action: "add-note" });
-
+    
             port.onMessage.addListener(res => {
                 console.log(res.success);
             })
@@ -137,10 +151,10 @@ class StickyList extends Component {
         chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
             chrome.runtime.sendMessage({ action: "remove-note", url: tabs[0].url }, res => {
                 this.setState({ notes: notes.filter(note => note.id !== id) });
-                alert(res.success);
+                //alert(res.success);
             })
         })
-        
+
     }
 
     render() {
