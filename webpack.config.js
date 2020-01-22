@@ -79,14 +79,14 @@ const config = {
             {
                 from: './OAuth/oauth.js',
             },
-            /*
+            
             {
-                from: 'node_modules/webextension-polyfill/dist/browser-polyfill.js'
+                from: './public/icon.png'
             },
             {
                 from: 'public/static',
             },
-            */
+            
         ]),
     ]
 };
