@@ -213,10 +213,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
 
         case "change-note":
-            chrome.storage.sync.get(request.id, item => {
-                const change = {
-                    text: request.text,
-                };
+            chrome.storage.sync.get('Notes', items => {
+                var NoteList = Object.keys(items).map(key => items[key])[0];
+
+                NoteList = NoteList.filter(it => {
+
+                });
+
                 /*
                 chrome.storage.sync.set({ maxID: id - 1 }, () => {
                     if (chrome.extension.lastError) {

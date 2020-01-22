@@ -39,7 +39,7 @@ class Login extends Component {
                 });
                 break;
             case this.STATE_ACQUIRING_AUTHTOKEN:
-                alert('Acquiring token...');
+                //alert('Acquiring token...');
                 this.setState({
                     current_state: newState,
                     signin_button: false,
@@ -54,7 +54,7 @@ class Login extends Component {
                     //xhr_button: true,
                     revoke_button: true,
                 });
-                alert(this.state.revoke_button)
+                //alert(this.state.revoke_button)
                 break;
         }
     }

@@ -17,7 +17,7 @@ class StickyList extends Component {
     componentDidMount() {
         chrome.runtime.sendMessage({ action: "get-user-info" }, res => {
             //this.changeState(res.state);
-            alert(res.success);
+            //alert(res.success);
         })
 
         chrome.runtime.sendMessage({ action: "load-notes" }, res => {

@@ -24,9 +24,9 @@ class StickyNote extends Component {
             top_color: "#FCF4AD",
             bottom_color: "#FCF8D9",
 
-            
+
             ctop: 200, left: 200
-              
+
         };
         this.handleClick = this.handleClick.bind(this);
         this.handleChange = this.handleChange.bind(this);
@@ -38,22 +38,22 @@ class StickyNote extends Component {
     handleClick() {
         const newColor = this.state.isToggleOn ? "#e3fafc" : ''
         const newPos = this.state.isToggleOn ? "fixed" : "absolute"
-        const target=document.getElementsByClassName('container')[0]
-        const clientRect=target.getBoundingClientRect()
+        const target = document.getElementsByClassName('container')[0]
+        const clientRect = target.getBoundingClientRect()
         const relativeTop = clientRect.top
-        const scrolledTopLength=window.pageYOffset
+        const scrolledTopLength = window.pageYOffset
         console.log(scrolledTopLength)
         console.log(this.state.isToggleOn)
-        const temp=scrolledTopLength+relativeTop
+        const temp = scrolledTopLength + relativeTop
         console.log(temp)
-        const newTop = this.state.isToggleOn ? relativeTop:temp
+        const newTop = this.state.isToggleOn ? relativeTop : temp
         console.log(newTop)
         console.log(this.state.ctop)
         console.log(this.state.pinbgcolor)
         this.setState(prevState => ({
             isToggleOn: !this.state.isToggleOn,
             pinbgcolor: newColor,
-            ctop: prevState.ctop-prevState.ctop+newTop,
+            ctop: prevState.ctop - prevState.ctop + newTop,
             position: newPos
         }));
         //window.pageYOffset=0
@@ -64,13 +64,13 @@ class StickyNote extends Component {
     handleDrag = (e, ui) => {
         console.log(ui.deltaY)
         this.setState({
-          
-            
-            ctop:  this.state.ctop+ui.deltaY,
+
+
+            ctop: this.state.ctop + ui.deltaY,
             left: this.state.left + ui.deltaX
         });
         console.log(this.state.ctop)
-      };
+    };
 
     yellowClick = () => {
         this.setState(prevState => ({
@@ -131,7 +131,7 @@ class StickyNote extends Component {
 
         chrome.runtime.sendMessage({ action: "change-note", text: event.target.value, id: this.state.id }, res => {
             //this.changeState(res.state);
-            alert(res.success);
+            //alert(res.success);
         })
     }
 
@@ -140,7 +140,7 @@ class StickyNote extends Component {
 
     removeNote() {
         chrome.runtime.sendMessage({ action: "remove-note-content", id: this.state.id }, res => {
-            alert(res.success);
+            //alert(res.success);
         })
     }
 
@@ -152,17 +152,17 @@ class StickyNote extends Component {
 
     render() {
         return (
-            <Draggable cancel="strong" onDrag={this.handleDrag}>
-                <div className="container" style={{position: this.state.position, top:this.state.ctop, left:this.state.left}}>
-                    
+            <Draggable cancel="strong" >
+                <div className="container" style={{ position: this.state.position, top: this.state.ctop, left: this.state.left }}>
 
-                        <div className="note-title" style={{ background: this.state.top_color }}>
 
-                            <FontAwesomeIcon className="pin" style={{ background: this.state.pinbgcolor}} onClick={this.handleClick} icon={faThumbtack} >
-                                {this.state.isToggleOn ? console.log("on") : console.log("off")}
-                            </FontAwesomeIcon>
-                            <span className= "right-side" style={{float:"right"}}>
-                            <span className="change-color-button" style={{  background: this.state.cbtbgcolor }} onClick={this.buttonClick}>
+                    <div className="note-title" style={{ background: this.state.top_color }}>
+
+                        <FontAwesomeIcon className="pin" style={{ background: this.state.pinbgcolor }} onClick={this.handleClick} icon={faThumbtack} >
+                            {this.state.isToggleOn ? console.log("on") : console.log("off")}
+                        </FontAwesomeIcon>
+                        <span className="right-side" style={{ float: "right" }}>
+                            <span className="change-color-button" style={{ background: this.state.cbtbgcolor }} onClick={this.buttonClick}>
                                 &#x022EF;
                                     <div className="color-tab"
                                     style={{
