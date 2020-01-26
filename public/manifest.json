@@ -1,67 +1,53 @@
 {
-  "name": "TN-Chrome Sticky Note",
-  "version": "1.0",
-  "description": "MadCamp_4_TN",
-  "manifest_version": 2,
-  "minimum_chrome_version": "23",
-  "browser_action": {
-    "default_popup": "index.html",
-    "default_title": "Chrome Sticky Note",
-    "default_icon":"icon.png"
-  },
-  "externally_connectable": {
-    "ids": [
-      "*"
-    ]
-  },
-  "commands": {
-    "_execute_browser_action": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+F"
-      }
-    }
-  },
-  "background": {
-    "scripts": [
-      "oauth.js",
-      "background.bundle.js"
-    ],
-    "persistent": false
-  },
-  "content_scripts": [
-    {
-      "matches": [
-        "<all_urls>"
-      ],
-      "js": [
-        "content.bundle.js"
-      ],
-      "run_at": "document_end"
-    }
-  ],
-  "key": "pcmjnhdpdgcmfbfoccfcoddnhdhjckgp",
-  "permissions": [
-    "activeTab",
-    "tabs",
-    "<all_urls>",
-    "storage",
-    "unlimitedStorage",
-    "contextMenus",
-    "identity",
-    "webNavigation",
-    "https://accounts.google.com/*",
-    "https://www.googleapis.com/*",
-    "https://www.googleapis.com/oauth2/v1/userinfo"
-  ],
-  "web_accessible_resources": [
-    "*.html"
-  ],
-  "oauth2": {
-    "client_id": "599807261383-24um475jm3gragrbvlvrjbnbl9koeegn.apps.googleusercontent.com",
-    "scopes": [
-      "https://www.googleapis.com/auth/userinfo.profile",
-      "https://www.googleapis.com/auth/userinfo.email"
-    ]
-  },
-  "content_security_policy": "default-src 'self'; frame-src https://s-usc1c-nss-212.firebaseio.com/; connect-src wss://s-usc1c-nss-212.firebaseio.com/.ws wss://madcamp-tn.firebaseio.com/.ws; style-src 'self' http://* 'unsafe-inline'; script-src 'self' 'unsafe-eval' https://cdn.firebase.com https://*.firebaseio.com 'sha256-qi7mBkt1jIA/PQInPTX+RmkExAhsBai2vRt/7EF3WjM='; object-src 'self'"
+	"name": "TN-Chrome Sticky Note",
+	"version": "1.0",
+	"description": "MadCamp_4_TN",
+	"manifest_version": 2,
+	"minimum_chrome_version": "23",
+	"browser_action": {
+		"default_popup": "index.html",
+		"default_title": "Chrome Sticky Note",
+		"default_icon": "icon.png"
+	},
+	"externally_connectable": {
+		"ids": ["*"]
+	},
+	"commands": {
+		"_execute_browser_action": {
+			"suggested_key": {
+				"default": "Ctrl+Shift+F"
+			}
+		}
+	},
+	"background": {
+		"scripts": ["background.bundle.js"],
+		"persistent": false
+	},
+	"content_scripts": [
+		{
+			"matches": ["<all_urls>"],
+			"js": ["content.bundle.js"],
+			"run_at": "document_end"
+		}
+	],
+	"key": "pcmjnhdpdgcmfbfoccfcoddnhdhjckgp",
+	"permissions": [
+		"activeTab",
+		"tabs",
+		"<all_urls>",
+		"storage",
+		"unlimitedStorage",
+		"contextMenus",
+		"identity",
+		"webNavigation",
+		"https://accounts.google.com/*",
+		"https://www.googleapis.com/*",
+		"https://www.googleapis.com/oauth2/v1/userinfo"
+	],
+	"web_accessible_resources": ["*.html"],
+	"oauth2": {
+		"client_id": "599807261383-24um475jm3gragrbvlvrjbnbl9koeegn.apps.googleusercontent.com",
+		"scopes": ["https://www.googleapis.com/auth/userinfo.profile", "https://www.googleapis.com/auth/userinfo.email"]
+	},
+	"content_security_policy": "default-src 'self'; frame-src https://s-usc1c-nss-212.firebaseio.com/; connect-src wss://s-usc1c-nss-212.firebaseio.com/.ws wss://madcamp-tn.firebaseio.com/.ws; style-src 'self' http://* 'unsafe-inline'; script-src 'self' 'unsafe-eval' https://cdn.firebase.com https://*.firebaseio.com 'sha256-qi7mBkt1jIA/PQInPTX+RmkExAhsBai2vRt/7EF3WjM='; object-src 'self'"
 }

@@ -1,8 +1,8 @@
 // content - add note
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-    console.log("hihihihihihi");
-    console.log(request.action);
-    /*
+	console.log('hihihihihihi');
+	console.log(request.action);
+	/*
     if (request.action == "add-note-content") {
         const stickyNote = document.createElement('div');
         stickyNote.id = "stickyNote";
@@ -13,9 +13,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
         return true;
     }*/
-    return true;
+	return true;
 });
-
 
 /*
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -48,7 +47,6 @@ chrome.runtime.onConnect.addListener(port => {
     });
 });
 */
-
 
 /*
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
